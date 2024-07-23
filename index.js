@@ -63,6 +63,7 @@ const userRoute = require('./routes/user.route');
 const hotelRoute = require('./routes/hotel.route')
 const Hotel = require('./models/hotel.model'); // Assurez-vous que le chemin est correct
 const path = require('path');
+require("dotenv").config();
 
 
 const app = express();
@@ -92,7 +93,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 
 
-mongoose.connect('mongodb://localhost:27017/test', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log('Connected to database!');
     app.listen(5000, () => {
